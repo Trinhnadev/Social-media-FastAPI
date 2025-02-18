@@ -1,9 +1,10 @@
-from fastapi import APIRouter, HTTPException, Body
+from fastapi import APIRouter, HTTPException, Body, FastAPI
 from bson import ObjectId
 from fastapi.encoders import jsonable_encoder
 from database.mongodb import db
 from models.user import UserCreate, UserInDB, UserResponse, UserUpdate
 from passlib.context import CryptContext
+
 
 router = APIRouter(prefix="/api/users", tags=["Users"])
 
@@ -79,3 +80,6 @@ async def delete_user_by_id(user_id: str):
         raise HTTPException(status_code=500, detail="Failed to delete user")
     
     return {"message": "User deleted successfully"}
+
+
+
